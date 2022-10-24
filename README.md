@@ -4,8 +4,30 @@ Team:
 
 * Vincent Phung  - Services microservice
 * Christie Sun - Sales microservice
+<<<<<<< HEAD
 
 ## Diagram
+=======
+
+## Diagram
+
+"excalidraw_linK"
+
+
+## Inventory microservice
+- it is the bounded contexts
+- Manufacturers, vehicle models and automobiles are the Entities
+- Has 3 models: Manufacturer, VehicleModel, Automobile
+
+  Allows you to:
+  -view the manufacturers list
+  -add a new manufacturers
+  -view a list of vehicle models information(name, manufacturer)
+  -view a list of automobiles information(vin, color, year)
+  -add a new automobile in inventory form
+  -add a new vehicle model
+
+>>>>>>> main
 
 "excalidraw_linK"
 
