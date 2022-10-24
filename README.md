@@ -26,7 +26,7 @@ Team:
 
 ## Service microservice
 
-Explain your models and integration with the inventory
+Explain your models and integration with the **inventory**
 microservice, here.
 
 
@@ -49,6 +49,6 @@ microservice, here.
 - React Nav bar links:
   a sales person form
   a customer form
-  a new sale record form 
+  a new sale record form
   a specific sales person history page
   a list of sales page
