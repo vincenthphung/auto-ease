@@ -1,7 +1,7 @@
 import React from "react";
 
 
-class ManufacturerCreateForm extends React.Component {
+class ManufacturerForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
