@@ -55,7 +55,8 @@ class ManufacturerForm extends React.Component {
                             </div>
                             <button className="btn btn-primary">Create</button>
                         </form>
-                        <div className={messageClasses} id="success-message">
+                        {/* <div className={Classmessage} id="success-message"> */}
+                        <div id="success-message">
                             Congratulations! You're all signed up!
                         </div>
                     </div>
@@ -65,5 +66,4 @@ class ManufacturerForm extends React.Component {
     }
 }
 
-export default ManufacturerForm;
-
+export default ManufacturerCreateForm;
