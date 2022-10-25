@@ -4,6 +4,10 @@ Team:
 
 * Vincent Phung  - Services microservice
 * Christie Sun - Sales microservice
+<<<<<<< HEAD
+
+## Diagram
+=======
 
 ## Diagram
 
@@ -23,14 +27,38 @@ Team:
   -add a new automobile in inventory form
   -add a new vehicle model
 
+>>>>>>> main
 
-## Service microservice
-
-Explain your models and integration with the inventory
-microservice, here.
+"excalidraw_linK"
 
 
+## Inventory microservice
+- it is the bounded contexts
+- Manufacturers, vehicle models and automobiles are the Entities
+- Has 3 models: Manufacturer, VehicleModel, Automobile
 
+  Allows you to:
+  -view the manufacturers list
+  -add a new manufacturers
+  -view a list of vehicle models information(name, manufacturer)
+  -view a list of automobiles information(vin, color, year)
+  -add a new automobile in inventory form
+  -add a new vehicle model
+
+
+## Service Microservice To do's
+- Technician creation form
+- Service appointment form
+- Show list of scheduled appointments
+- Create a search page that allows customers to search for services
+
+- Create navbar links:
+  - Create technician form
+  - Service
+  - List of services
+  - List of past services filter by VIN
+
+----------------------------------------------------------------
 ## Sales microservice
 - Track the sales information from inventory
 - Manufacturers, models and cars are the Value Objects
@@ -49,6 +77,6 @@ microservice, here.
 - React Nav bar links:
   a sales person form
   a customer form
-  a new sale record form 
+  a new sale record form
   a specific sales person history page
   a list of sales page
