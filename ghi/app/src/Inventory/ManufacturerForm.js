@@ -65,5 +65,4 @@ class ManufacturerCreateForm extends React.Component {
     }
 }
 
-export default ManufacturerForm;
-
+export default ManufacturerCreateForm;
