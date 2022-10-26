@@ -16,7 +16,8 @@ class TechnicianEncoder(ModelEncoder):
 
 class ServiceAppointmentEncoder(ModelEncoder):
     model = ServiceAppointment
-    properties = ["id", "vin", "customer", "vip", "appointment_time", "reason", "completed", "technician"]
+    properties = ["vin", "customer", "vip", "appointment_time", "reason", "completed", "technician"]
+
     encoders = {"technician": TechnicianEncoder()}
 
 
@@ -59,7 +60,7 @@ def list_create_appointments(request):
             else:
                 appointment.vip = False
         return JsonResponse(
-            {"appointments": appointments},
+            {"appointments": appointment},
             encoder=ServiceAppointmentEncoder,
             safe=False
         )
@@ -92,6 +93,7 @@ def update_appointments(request, pk):
             )
         except ServiceAppointment.DoesNotExist:
             return JsonResponse({"Error": "Appointment does not exist"}, status=404)
+        
     if request.method == "DELETE":
         appointment = ServiceAppointment.objects.get(id=pk)
         appointment.delete()

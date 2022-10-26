@@ -23,7 +23,7 @@ class AddPotentialCustomerForm extends React.Component {
     handleAddressChange(event){
         const value = event.target.value;
         this.setState({ address: value })
-        
+
     }
 
 

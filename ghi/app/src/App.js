@@ -11,6 +11,8 @@ import ListSalesPage from './Sales/SalesListPage';
 import AddSalesPersonForm from './Sales/SalesPersonForm';
 import ListSalesHistoryPage from './Sales/SalesPersonHistoryPage';
 
+import MakeCar from './Services/MakeCar';
+
 
 
 function App() {
@@ -23,7 +25,8 @@ function App() {
           <Route path="/manufacturers/new" element={<ManufacturerCreateForm />} />
           <Route path="/manufacturers" element={<ManufacturersList />} />
           <Route path="/vehiclemodels" element={<VehicleModelsList />} />
-          
+          <Route path="/createmodels" element={<MakeCar />} />
+
           <Route path="/potentialcustomer/new" element={<AddPotentialCustomerForm />} />
           <Route path="/sales/new" element={<CreateSaleRecordForm />} />
           <Route path="/sales/list" element={<ListSalesPage />} />
