@@ -14,7 +14,7 @@ class ListSalesHistoryPage extends React.Component {
     };
 
     async componentDidMount() {
-        const url = 'http://localhost:8090/api/salesmen/';
+        const url = 'http://localhost:8090/api/sales/person/${id}';
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json();
@@ -29,7 +29,7 @@ class ListSalesHistoryPage extends React.Component {
         event.preventDefault();
         const id = event.target.value
 
-        const url = `http://localhost:8090/api/sales/${id}/`
+        const url = 'http://localhost:8090/api/sales/${id}/';
 
 
         const response = await fetch(url)
@@ -92,6 +92,5 @@ class ListSalesHistoryPage extends React.Component {
 
 }
 export default ListSalesHistoryPage;
-
 
 

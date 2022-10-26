@@ -21,15 +21,13 @@ class CreateSaleRecordForm extends React.Component {
     async handleSubmit(event) {
         event.preventDefault();
         const data = { ...this.state };
-
-        data.sales_person = data.salesPerson;
-
-        delete data.salesPerson;
+        data.salesPersons = data.salesPersons;
+        delete data.salesPersons;
         delete data.automobiles;
         delete data.salesPersons;
         delete data.customers;
 
-        const recordUrl = `http://localhost:8090/api/sales/`;
+        const recordUrl = 'http://localhost:8090/api/sales/';
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(data),
@@ -72,17 +70,14 @@ class CreateSaleRecordForm extends React.Component {
         this.setState({ price: value })
     }
 
-    async componentDidMount() {
-        //automobile 
+    async componentDidMount() { 
         const automobileUrl = 'http://localhost:8100/api/automobiles/';
         const automobileResponse = await fetch(automobileUrl);
 
-        //sales people
         const salesPersonUrl = 'http://localhost:8090/api/sales/person/';
         const salesPersonResponse = await fetch(salesPersonUrl);
 
-        //customer
-        const customerUrl = 'http://localhost:8090/api/sales/customer/';
+        const customerUrl = 'http://localhost:8090/api/sales/potentialcustomer/';
         const customerResponse = await fetch(customerUrl);
 
         if (automobileResponse.ok && salesPersonResponse.ok && customerResponse.ok) {
@@ -146,7 +141,9 @@ class CreateSaleRecordForm extends React.Component {
                                 <label htmlFor="price">Price</label>
                             </div>
 
-                            <button className="btn btn-primary" id="newSaleBtn">Create</button>
+                            <div className='d-grid gap-2 d-md-flex justify-content-md-end'>
+								<button className='btn btn-outline-success'>Create</button>
+							</div>
                         </form>
                     </div>
                 </div>
