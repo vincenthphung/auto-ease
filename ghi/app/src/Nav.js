@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 
 function Nav() {
-	return (
+  return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-success">
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">
@@ -45,13 +45,18 @@ function Nav() {
                   </NavLink>
                 </li>
                 <li className="nav-item">
+                  <NavLink className="dropdown-item" to="/createmodels">
+                    Create a Vehicle Model
+                  </NavLink>
+                </li>
+                <li className="nav-item">
                   <NavLink className="dropdown-item" to="/vehiclemodels">
                     List of Vehicle Models
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="dropdown-item" to="/createmodels">
-                    Create a Vehicle Model
+                  <NavLink className="dropdown-item" to="/automobiles">
+                    List of Automobiles
                   </NavLink>
                 </li>
               </ul>
@@ -74,35 +79,38 @@ function Nav() {
                 <li className="nav-item">
                   <NavLink
                     className="dropdown-item"
-                    to="/potentialcustomer/new"
+                    to="#"
                   >
-                    Add a customer
+                    Create Technician
+                  </NavLink>
+                </li>
+
+                <li className="nav-item">
+                  <NavLink
+                    className="dropdown-item"
+                    to="#"
+                  >
+                    List Technician
+                  </NavLink>
+                </li>
+
+                <li className="nav-item">
+                  <NavLink className="dropdown-item" to="#">
+                    Service List
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="dropdown-item" to="/salesperson/new">
-                    Add a sales person
+                  <NavLink className="dropdown-item" to="#">
+                  Create Service
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="dropdown-item" to="/appointment/new">
-                    Create appointment
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink className="dropdown-item" to="/appointments/list">
-                    List of appointments
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink className="dropdown-item" to="/saleshistory">
+                  <NavLink className="dropdown-item" to="#">
                     Service History
                   </NavLink>
                 </li>
               </ul>
             </div>
-
-
 
             <div className="dropdown">
               <button
