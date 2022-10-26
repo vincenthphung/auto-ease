@@ -2,6 +2,18 @@ import json
 from django.views.decorators.http import require_http_methods
 from django.http import JsonResponse
 from .encoders import(
+    AutomobileVOEncoder,
+    SalesPersonEncoder,
+    PotentialCustomerEncoder,
+    SalesHistoryEncoder,
+)
+from .models import AutomobileVO, SalesPerson, PotentialCustomer, SalesHistory
+
+# Create your views here.
+import json
+from django.views.decorators.http import require_http_methods
+from django.http import JsonResponse
+from .encoders import(
     SalesPersonEncoder,
     PotentialCustomerEncoder,
     SalesHistoryEncoder,
@@ -157,3 +169,4 @@ def api_show_salesperson(request, pk): # for a specific sales person
             response = JsonResponse({"message": "Does not exist"})
             response.status_code = 404
             return response
+

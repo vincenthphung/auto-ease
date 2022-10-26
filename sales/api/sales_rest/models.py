@@ -40,22 +40,22 @@ class SalesHistory(models.Model):
     price = models.PositiveIntegerField()
     sales_person = models.ForeignKey(
         SalesPerson,
-        related_name="sales_history",
+        related_name="sales",
         on_delete=models.PROTECT
     )
     customer = models.ForeignKey(
         PotentialCustomer,
-        related_name="sales_history",
+        related_name="sales",
         on_delete=models.PROTECT
     )
     automobile = models.ForeignKey(
         AutomobileVO,
-        related_name="sales_history",
+        related_name="sales",
         on_delete=models.PROTECT
     )
 
     def __str__(self):
-        return f"Sale history for {self.vin}"
+        return str("Salesperson: " + self.sales_person.name)
 
     def get_api_url(self):
         return reverse('api_show_saleshistory', kwargs={'pk': self.pk})
