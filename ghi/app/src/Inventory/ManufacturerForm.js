@@ -1,42 +1,37 @@
 import React from "react";
 
 
-class ManufacturerForm extends React.Component {
+class ManufacturerCreateForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             name: '',
-            manufacturers: []
         }
-        this.handleChangeName = this.handleChangeName.bind(this)
+        this.handleNameChange = this.handleNameChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
-    handleChangeName(event) {
-        const value = event.target.value;
+    handleNameChange(event) {
+        const value = event.target.value
         this.setState({ name: value })
     }
 
     async handleSubmit(event) {
-        event.preventDefault();
-        const data = { ...this.state };
-
-        const manufacturerUrl = "http://localhost:8100/api/manufacturers/";
+        event.preventDefault()
+        const data = { ...this.state }
+        const ManufacturersUrl = 'http://localhost:8100/api/manufacturers/'
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(data),
             headers: {
-                "Content-Type": "application/json",
-            },
-        };
-        const response = await fetch(manufacturerUrl, fetchConfig);
+                'Content-Type': 'application/json'
+            }
+        }
+        const response = await fetch(ManufacturersUrl, fetchConfig)
         if (response.ok) {
-            const newManfacturer = await response.json();
-            console.log(newManfacturer)
-
-
+            const newManufacturer = await response.json()
             const cleared = {
                 name: '',
-            };
+            }
             this.setState(cleared)
         }
     }
@@ -48,22 +43,19 @@ class ManufacturerForm extends React.Component {
                 <div className="offset-3 col-6">
                     <div className="shadow p-4 mt-4">
                         <h1>Create a manufacturer</h1>
-                        <form onSubmit={this.handleSubmit} id="create-manufacturer-form">
+                        <form onSubmit={this.handleSubmit} id="create-manufacturers-form">
                             <div className="form-floating mb-3">
-                                <input onChange={this.handleNameChange} value={this.state.name} placeholder="Name" required type="text" id="name" className="form-control" />
-                                <label htmlFor="name">Manufacturer Name</label>
+                                <input onChange={this.handleNameChange} value={this.state.name} placeholder="name" required type="text" name="name" id="name" className="form-control" />
+                                <label htmlFor="manufacturer">Name</label>
                             </div>
-                            <button className="btn btn-primary">Create</button>
+                            <button className="btn btn-primary" id="createBtn">Create</button>
                         </form>
-                        {/* <div className={Classmessage} id="success-message"> */}
-                        <div id="success-message">
-                            Congratulations! You're all signed up!
-                        </div>
                     </div>
                 </div>
             </div>
         );
     }
 }
+
 
 export default ManufacturerCreateForm;

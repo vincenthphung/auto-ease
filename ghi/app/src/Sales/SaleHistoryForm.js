@@ -1,23 +1,55 @@
 import React from 'react';
 
+
 class CreateSaleRecordForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             automobiles: [],
-            automobile:'',
-            sales_persons: [],
-            sales_person: '',
+            salesPersons: [],
             customers: [],
-            customer:'',
             price: '',
         };
 
         this.handleAutomobileChange = this.handleAutomobileChange.bind(this);
-        this.handleSalesPersonChange = this.handleSalesPersonChange.bind(this)
+        this.handleSalesPersonChange = this.handleSalesPersonChange.bind(this);
         this.handleCustomerChange = this.handleCustomerChange.bind(this);
         this.handlePriceChange = this.handlePriceChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    async handleSubmit(event) {
+        event.preventDefault();
+        const data = { ...this.state };
+
+        data.sales_person = data.salesPerson;
+
+        delete data.salesPerson;
+        delete data.automobiles;
+        delete data.salesPersons;
+        delete data.customers;
+
+        const recordUrl = `http://localhost:8090/api/sales/`;
+        const fetchConfig = {
+            method: "post",
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+        const response = await fetch(recordUrl, fetchConfig);
+
+        if (response.ok) {
+            const newRecord = await response.json();
+
+            const cleared = {
+                automobiles: [],
+                salesPersons: [],
+                customers: [],
+                price: '',
+            };
+            this.setState(cleared);
+        }
     }
 
     handleAutomobileChange(event) {
@@ -27,9 +59,8 @@ class CreateSaleRecordForm extends React.Component {
 
     handleSalesPersonChange(event) {
         const value = event.target.value;
-        this.setState({ sales_person: value })
+        this.setState({ salesPerson: value })
     }
-
 
     handleCustomerChange(event) {
         const value = event.target.value;
@@ -41,62 +72,32 @@ class CreateSaleRecordForm extends React.Component {
         this.setState({ price: value })
     }
 
-    async handleSubmit(event) {
-        event.preventDefault();
-        const data = { ...this.state };
-
-        delete data.automobiles;
-        delete data.sales_persons;
-        delete data.customers;
-        console.log(data)
-
-        const recordUrl = 'http://localhost:8090/api/sales/';
-
-        const fetchConfig = {
-            method: "post",
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        };
-
-        const response = await fetch(recordUrl, fetchConfig);
-        if (response.ok) {
-            const newSalesHistory = await response.json();
-            console.log(newSalesHistory);
-
-            const cleared = {
-                automobile: '',
-                sales_person: '',
-                customer: '',
-                price: '',
-            };
-            this.setState(cleared);
-        }
-    }
-
-
-    async componentDidMount() { 
+    async componentDidMount() {
+        //automobile 
         const automobileUrl = 'http://localhost:8100/api/automobiles/';
         const automobileResponse = await fetch(automobileUrl);
 
+        //sales people
         const salesPersonUrl = 'http://localhost:8090/api/sales/person/';
         const salesPersonResponse = await fetch(salesPersonUrl);
 
-        const customerUrl = 'http://localhost:8090/api/sales/potentialcustomer/';
+        //customer
+        const customerUrl = 'http://localhost:8090/api/sales/customer/';
         const customerResponse = await fetch(customerUrl);
-
 
         if (automobileResponse.ok && salesPersonResponse.ok && customerResponse.ok) {
             const automobileData = await automobileResponse.json();
+
             const salesPersonData = await salesPersonResponse.json();
+
             const customerData = await customerResponse.json();
 
             this.setState({ automobiles: automobileData.autos })
-            this.setState({ sales_persons: salesPersonData.sales_persons })
+            this.setState({ salesPersons: salesPersonData.sales_people })
             this.setState({ customers: customerData.customers })
         }
     }
+
 
 
     render() {
@@ -119,16 +120,16 @@ class CreateSaleRecordForm extends React.Component {
                             </div>
 
                             <div className="mb-3">
-                                <select onChange={this.handleSalesPersonChange} value={this.state.sales_person} required id="sales_person" name="sales_person" className="form-select">
+                                <select onChange={this.handleSalesPersonChange} value={this.state.salesPerson} required id="sales_person" name="sales_person" className="form-select">
                                     <option value="">Choose a sales person</option>
-                                    {this.state.sales_persons.map(sales_person => {
+                                    {this.state.salesPersons.map(salesPerson => {
                                         return (
-                                            <option key={sales_person.employee_id} value={sales_person.employee_id}>{sales_person.name}</option>
+                                            <option key={salesPerson.id} value={salesPerson.id}>{salesPerson.name}</option>
                                         );
                                     })}
                                 </select>
                             </div>
-                            
+
                             <div className="mb-3">
                                 <select onChange={this.handleCustomerChange} value={this.state.customer} required id="customer" name="customer" className="form-select">
                                     <option value="">Choose a customer</option>
@@ -139,23 +140,22 @@ class CreateSaleRecordForm extends React.Component {
                                     })}
                                 </select>
                             </div>
-                            
+
                             <div className="form-floating mb-3">
                                 <input onChange={this.handlePriceChange} value={this.state.price} placeholder="price" type="number" id="price" className="form-control" />
-                                <label htmlFor="price">Sale Price</label>
+                                <label htmlFor="price">Price</label>
                             </div>
 
-                            <button className="btn btn-primary">Create</button>
+                            <button className="btn btn-primary" id="newSaleBtn">Create</button>
                         </form>
-                        <div className={this.state.success ? "alert alert-success mt-4" : "d-none"} id="success-message">
-                            Good job! You sold a car successfully.
-                        </div>
                     </div>
                 </div>
             </div>
         );
     }
-}
+};
 
 export default CreateSaleRecordForm;
 
+
+    

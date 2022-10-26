@@ -29,7 +29,7 @@ class AddPotentialCustomerForm extends React.Component {
 
     handlePhoneChange(event){
         const value = event.target.value;
-        this.setState({ phone_number: value })
+        this.setState({ phone: value })
     }
 
     async handleOnSubmit(event){
@@ -79,9 +79,11 @@ class AddPotentialCustomerForm extends React.Component {
                                 <input onChange={this.handlePhoneChange} value={this.state.phone} placeholder="Phone" required type="text" name="phone" id="phone" className="form-control" />
                                 <label htmlFor="name">Phone</label>
                             </div>
-
                             <button className="btn btn-primary">Create</button>
                         </form>
+                        <div className={this.state.success ? "alert alert-success mt-4" : "d-none"} id="success-message">
+                            New customer is added.
+                        </div>
                     </div>
                 </div >
             </div >

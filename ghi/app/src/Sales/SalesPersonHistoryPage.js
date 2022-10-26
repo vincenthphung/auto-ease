@@ -5,28 +5,16 @@ class ListSalesHistoryPage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            sales: [],
             sales_persons: [],
             sales_person: '',
-        };
-        this.handleSalesPersonChange = this.handleSalesPersonChange.bind(this)
-
-    }
-
-    async handleSalesPersonChange(event) {
-        const value = event.target.value;
-        const salesHistoryUrl = 'http://localhost:8090/api/sales/person/${value}';
-        const salesHistoryResponse = await fetch(salesHistoryUrl);
-
-        if (salesHistoryResponse.ok) {
-            const salesHistory = await salesHistoryResponse.json();
-            this.setState({ sales: salesHistory});
+            dropdown: [],
         }
-    }
+        this.handleSalesPersonChange = this.handleSalesPersonChange.bind(this);
 
+    };
 
     async componentDidMount() {
-        const url = 'http://localhost:8090/api/sales/person/';
+        const url = 'http://localhost:8090/api/salesmen/';
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json();
@@ -36,54 +24,74 @@ class ListSalesHistoryPage extends React.Component {
         };
     }
 
-    
+    async handleSalesPersonChange(event) {
+
+        event.preventDefault();
+        const id = event.target.value
+
+        const url = `http://localhost:8090/api/sales/${id}/`
+
+
+        const response = await fetch(url)
+        const results = await response.json()
+        console.log(results.sales_record)
+
+        this.setState({ dropdown: results.sales_record });
+    };
+
+
     render() {
         return (
             <div className="row" >
                 <div className="offset-3 col-6">
                     <div className="shadow p-4 mt-4">
-                        <h1>Sales Person History</h1>
+                        <h1>Sales person history</h1>
 
-                        <select onChange={this.handleSalesPersonChange} value={this.state.sales_persons} required id="sales_person" name="sales_person" className="form-select">
-                            <option value="">Select a sales person</option>
-                            {this.state.sales_persons.map(sales_persons => {
+                        <select onChange={this.handleSalesPersonChange} className="form-select" aria-label="Default select example">
+                            <option >Select a name</option>
+                            {this.state.sales_persons.map(sales_person => {
                                 return (
-                            <option key={sales_persons.employee_id} value={sales_persons.employee_id}>{sales_persons.name}</option>
+                                    <option value={sales_person.id} key={sales_person.employee_number}>
+                                        {sales_person.name}
+                                    </option>
                                 );
                             })}
                         </select>
-                    </div>
 
-                <div>
-                    <table className="table table-striped mt-3">
+                    </div>
+                    <h2>Sales History</h2>
+                    <table className="table table-striped">
                         <thead>
                             <tr>
-                                <th>Sales Person</th> 
+
+                                <th>Sales Person</th>
                                 <th>Customer</th>
                                 <th>VIN</th>
-                                <th>Sale price</th>
+                                <th>Sale Price</th>
                             </tr>
                         </thead>
-                        <tbody id="sales_person_details">
-                            {this.state.data_records.map (data => {
-                                return(
-                                    <tr key={sales.automobile.vin}>
-                                        <td>{sales.sales_person.name}</td>
-                                        <td>{sales.customer.name}</td>
-                                        <td>{sales.automobile.vin}</td>
-                                        <td>{'$${sales.price}.00'}</td>
+                        <tbody>
+
+                            {this.state.dropdown.map(sale => {
+                                return (
+                                    <tr key={sale.vin.vin}>
+                                        <td>{sale.sales_person.name}</td>
+                                        <td>{sale.customer.name}</td>
+                                        <td>{sale.vin.vin}</td>
+                                        <td>{sale.price}</td>
                                     </tr>
-                                )
-                            })}
+                                );
+                            }
+                            )}
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
+            </div >
         )
     }
-};
 
-
+}
 export default ListSalesHistoryPage;
+
+
 

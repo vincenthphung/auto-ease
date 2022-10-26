@@ -5,11 +5,11 @@ class AddSalesPersonForm extends React.Component {
         super(props)
         this.state = {
             name: '',
-            employee_id: '',
+            id: '',
         }
 
         this.handleNameChange = this.handleNameChange.bind(this);
-        this.handleEmployeeIDChange = this.handleEmployeeIDChange.bind(this);
+        this.handleIdChange = this.handleIdChange.bind(this);
         this.handleOnSubmit = this.handleOnSubmit.bind(this);
     }
 
@@ -18,9 +18,9 @@ class AddSalesPersonForm extends React.Component {
         this.setState({ name: value })
     }
 
-    handleEmployeeIdChange(event) {
+    handleIdChange(event) {
         const value = event.target.value;
-        this.setState({ employee_id: value })
+        this.setState({ id: value })
 
     }
 
@@ -44,7 +44,7 @@ class AddSalesPersonForm extends React.Component {
 
             const cleared = {
                 name: '',
-                employee_id: '',
+                id: '',
             };
             this.setState(cleared);
         };
@@ -63,11 +63,10 @@ class AddSalesPersonForm extends React.Component {
                                 <label htmlFor="name">Name</label>
                             </div>
                             <div className="form-floating mb-3">
-                                <input onChange={this.handleEmployeeIdChange} value={this.state.employee_id} placeholder="Employee Id" required type="text" name="employee_id" id="employee_id" className="form-control" />
+                                <input onChange={this.handleIdChange} value={this.state.id} placeholder="Id" required type="text" name="id" id="id" className="form-control" />
                                 <label htmlFor="employee_id">Employee Id</label>
                             </div>
-
-                            <button className="btn btn-primary">Create</button>
+                            <button className="btn btn-primary" id="salesPersBtn">Create</button>
                         </form>
                     </div>
                 </div>
