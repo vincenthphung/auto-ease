@@ -6,5 +6,4 @@ urlpatterns = [
     path("technicians/", list_create_technicians, name="list__create_technicians"),
     path("appointments/<int:pk>/", update_appointments, name="update_appointment"),
     path("automobiles/", list_vos, name="list_vos"),
-
 ]
