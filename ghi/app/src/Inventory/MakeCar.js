@@ -24,7 +24,7 @@ const MakeCar = () => {
 			body: JSON.stringify(data),
 			headers: { 'Content-Type': 'application/json' },
 		}).then((e) => {
-			window.location.href = '/models';
+			window.location.href = '/vehiclemodels';
 		});
 	};
 
@@ -113,5 +113,3 @@ const MakeCar = () => {
 };
 
 export default MakeCar;
-
-
