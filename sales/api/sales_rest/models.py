@@ -5,12 +5,7 @@ from django.urls import reverse
 class AutomobileVO(models.Model):
     import_href = models.CharField(max_length=200, unique=True)
     vin = models.CharField(max_length=50)
-    year = models.PositiveSmallIntegerField()
     sold = models.BooleanField(default=False)
-
-    def is_sold(self):
-        self.sold = True
-        self.save()
 
 
 class SalesPerson(models.Model):
@@ -59,3 +54,4 @@ class SalesHistory(models.Model):
 
     def get_api_url(self):
         return reverse('api_show_saleshistory', kwargs={'pk': self.pk})
+
