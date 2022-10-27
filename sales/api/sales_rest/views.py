@@ -21,6 +21,15 @@ from .encoders import(
 from .models import AutomobileVO, SalesPerson, PotentialCustomer, SalesHistory
 
 # Create your views here.
+@require_http_methods(["GET"])
+def api_list_automoboilesvo(request):
+    if request.method == "GET":
+        automobiles = AutomobileVO.objects.filter(sold=False)
+        return JsonResponse(
+            {"automobiles": automobiles},
+            encoder=AutomobileVOEncoder)
+
+
 @require_http_methods(["GET", "POST"])
 def api_create_salesperson(request):
     if request.method == "GET":
