@@ -70,11 +70,11 @@ const CreateSaleRecordForm = () => {
         const response = await fetch(salesRecordUrl, fetchConfig);
         if (response.ok) {
             const newSalesRecord = await response.json();
+            setSubmitted(true);
             setAutomobile("");
             setSalesPerson("");
             setCustomer("");
             setPrice("");
-            setSubmitted(true);
         }
     };
 
