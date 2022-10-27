@@ -13,6 +13,7 @@ django.setup()
 # from sales_rest.models import Something
 from sales_rest.models import AutomobileVO
 
+
 def get_automobile():
     url= "http://inventory-api:8000/api/automobiles/"
     response = requests.get(url)
@@ -22,6 +23,7 @@ def get_automobile():
             import_href=auto["href"],
             defaults={"vin": auto["vin"]}
         )
+
 
 def poll():
     while True:
@@ -35,4 +37,5 @@ def poll():
 
 if __name__ == "__main__":
     poll()
+
 
