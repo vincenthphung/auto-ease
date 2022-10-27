@@ -15,7 +15,6 @@ class ListSalesHistoryPage extends React.Component {
 
     async handleSalesPersonChange(event) {
         const value = event.target.value;
-        //get a list of sales for specific sales person, using their employee id = value
         const personSalesUrl = `http://localhost:8090/api/sales/person/${value}`;
         const personSalesResponse = await fetch(personSalesUrl);
 
@@ -27,7 +26,6 @@ class ListSalesHistoryPage extends React.Component {
     }
 
     async componentDidMount() {
-        //list all sales people endpoint
         const salesPersonUrl = 'http://localhost:8090/api/sales/person/';
         const salesPersonResponse = await fetch(salesPersonUrl);
 
