@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
 function Nav() {
   return (
@@ -70,7 +70,7 @@ function Nav() {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Appointments
+                Services
               </button>
               <ul
                 className="dropdown-menu"
@@ -79,7 +79,7 @@ function Nav() {
                 <li className="nav-item">
                   <NavLink
                     className="dropdown-item"
-                    to="#"
+                    to="service/new_technician/"
                   >
                     Create Technician
                   </NavLink>
@@ -88,24 +88,24 @@ function Nav() {
                 <li className="nav-item">
                   <NavLink
                     className="dropdown-item"
-                    to="#"
+                    to="service/list_technician"
                   >
                     List Technician
                   </NavLink>
                 </li>
 
                 <li className="nav-item">
-                  <NavLink className="dropdown-item" to="#">
+                  <NavLink className="dropdown-item" to="/service">
                     Service List
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="dropdown-item" to="#">
-                  Create Service
+                  <NavLink className="dropdown-item" to="/service/new">
+                    Create Service
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="dropdown-item" to="#">
+                  <NavLink className="dropdown-item" to="/service/search">
                     Service History
                   </NavLink>
                 </li>

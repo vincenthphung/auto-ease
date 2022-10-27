@@ -8,6 +8,9 @@ import MakeCar from './Inventory/MakeCar';
 import AutomobileList from './Inventory/AutomobileList';
 import AutomobileForm from './Inventory/AutomobileForm';
 
+import TechnicianCreate from './Services/TechnicianCreate';
+import TechnicianList from './Services/TechnicianList';
+
 import AddPotentialCustomerForm from './Sales/PotentialCustomerForm';
 import CreateSaleRecordForm from './Sales/SaleHistoryForm';
 import ListSalesPage from './Sales/SalesListPage';
@@ -21,7 +24,10 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/manufacturers/new" element={<ManufacturerCreateForm />} />
+          <Route
+            path="/manufacturers/new"
+            element={<ManufacturerCreateForm />}
+          />
           <Route path="/manufacturers" element={<ManufacturersList />} />
           <Route path="/createmodels" element={<MakeCar />} />
           <Route path="/vehiclemodels" element={<VehicleModelsList />} />
@@ -29,7 +35,18 @@ function App() {
             <Route index element={<AutomobileList />} />
             <Route path="new" element={<AutomobileForm />} />
           </Route>
-          <Route path="/potentialcustomer/new" element={<AddPotentialCustomerForm />} />
+          <Route path="service">
+            {/* <Route index element={<ServiceList />} />
+            <Route path="new" element={<ServiceCreate />} />
+            <Route path="search" element={<ServiceSearch />} /> */}
+            <Route path="new_technician" element={<TechnicianCreate />} />
+            <Route path="list_technician" element={<TechnicianList />} />
+          </Route>
+
+          <Route
+            path="/potentialcustomer/new"
+            element={<AddPotentialCustomerForm />}
+          />
           <Route path="/sales/new" element={<CreateSaleRecordForm />} />
           <Route path="/sales/list" element={<ListSalesPage />} />
           <Route path="/salesperson/new" element={<AddSalesPersonForm />} />
