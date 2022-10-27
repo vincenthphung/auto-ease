@@ -9,13 +9,25 @@ Team:
 
 "excalidraw_linK"
 
+## Getting Started
+- Fork the project
+- In the terminal, go to your project directory
+- Then, running following commands:
+  * git clone https://gitlab.com/<gitlab_username>/project-beta
+  * docker volume create beta-data
+  * docker-compose build
+  * docker-compose up
+  
+- Make sure all the containers are running well
+- Open Chrome browser and go to http://localhost:3000/
+
 
 ## Inventory microservice
-- it is the bounded contexts
+- It is the bounded contexts
 - Manufacturers, vehicle models and automobiles are the Entities
-- Has 3 models: Manufacturer, VehicleModel, Automobile
+- Inventory can be tracked in these 3 models: Manufacturer, VehicleModel, Automobile
 
-  * Allows you to:
+  * Allows users to:
   
   - view the manufacturers list
   - add a new manufacturers
@@ -40,9 +52,10 @@ Team:
 ----------------------------------------------------------------
 ## Sales microservice
 - Track the sales information from inventory
-- Manufacturers, models and cars are the Value Objects
 - Has 4 models: AutomobileVO, SalesPerson, PotentialCustomer, and SaleHistory.
   *AutomobileVO is a data which polled from the Automobile model within the Inventory Microservice
+
+- AutomobileVO, SalesPerson, PotentialCustomer, SalesHistory
 
 
   * Allows you to:
