@@ -7,6 +7,10 @@ class AutomobileVO(models.Model):
     vin = models.CharField(max_length=50)
     sold = models.BooleanField(default=False)
 
+    def is_sold(self):
+        self.sold = True
+        self.save()
+
 
 class SalesPerson(models.Model):
     name = models.CharField(max_length=100)
