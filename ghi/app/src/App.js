@@ -8,8 +8,8 @@ import MakeCar from './Inventory/MakeCar';
 import AutomobileList from './Inventory/AutomobileList';
 import AutomobileForm from './Inventory/AutomobileForm';
 
-import TechnicianCreate from './Services/TechnicianCreate';
-import TechnicianList from './Services/TechnicianList';
+import TechnicianCreate from './Service/TechnicianCreate';
+import TechnicianList from './Service/TechnicianList';
 
 import AddPotentialCustomerForm from './Sales/PotentialCustomerForm';
 import CreateSaleRecordForm from './Sales/SaleHistoryForm';
