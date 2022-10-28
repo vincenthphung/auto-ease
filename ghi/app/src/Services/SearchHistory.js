@@ -19,7 +19,7 @@ const SearchHistory = () => {
     fetchService();
   }, []);
 
-  const handleSearch = async (event) => {
+  const handleSearch = async (e) => {
     const results = service.filter((appointment) =>
       appointment.vin.includes(searchVin)
     );
@@ -27,14 +27,20 @@ const SearchHistory = () => {
     setSubmitted(true);
   };
 
+  const styles = {
+    fontSize: 55,
+    fontWeight: "bold",
+    color: "#3e9b6f",
+  };
+
   return (
     <React.Fragment>
       <div className="px-4 py-5 my-1 mt-0 text-center">
-        <h1 className="display-5">Appointment History</h1>
+        <h1 style={styles} className="display-5">Appointment History</h1>
       </div>
       <div className="row height d-flex justify-content-center align-items-center">
         <div className="col-md-auto">
-          <div className="input-group mb-2">
+          <div className="input-group mb-4">
             <input
               type="text"
               value={searchVin}
@@ -43,7 +49,7 @@ const SearchHistory = () => {
             <button
               onClick={handleSearch}
               type="button"
-              className="btn btn-outline-secondary"
+              className="btn btn-primary"
             >
               Search VIN
             </button>

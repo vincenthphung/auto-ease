@@ -1,10 +1,5 @@
 from common.json import ModelEncoder
-from .models import AutomobileVO, Technician, Appointment
-
-
-class TechnicianEncoder(ModelEncoder):
-    model = Technician
-    properties = ["name", "id", "employee_number"]
+from .models import Appointment, Technician
 
 
 class AppointmentEncoder(ModelEncoder):
@@ -23,3 +18,8 @@ class AppointmentEncoder(ModelEncoder):
     encoders = {
         "technician": TechnicianEncoder(),
     }
+
+
+class TechnicianEncoder(ModelEncoder):
+    model = Technician
+    properties = ["name", "id", "employee_number"]
