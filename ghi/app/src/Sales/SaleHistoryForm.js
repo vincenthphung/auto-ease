@@ -143,5 +143,3 @@ const CreateSaleRecordForm = () => {
 };
 
 export default CreateSaleRecordForm;
-
-
