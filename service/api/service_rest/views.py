@@ -94,7 +94,7 @@ def show_appointment(request, pk):
 
 
 @require_http_methods(["GET", "POST"])
-def list_technicians(request):
+def list_techs(request):
     if request.method == "GET":
         technicians = Technician.objects.all()
 

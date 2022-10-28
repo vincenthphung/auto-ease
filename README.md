@@ -27,6 +27,7 @@ Please following directions to start the application:
 5. To view the application, go to http://localhost:3000.
 
 6. Feel free the browse the site to see data you will need to create the data using the forms in nav bar.
+
 # Inventory microservice
 
 - it is the bounded contexts

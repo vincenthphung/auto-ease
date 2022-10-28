@@ -77,10 +77,7 @@ function Nav() {
                 aria-labelledby="dropdownMenuButton1"
               >
                 <li className="nav-item">
-                  <NavLink
-                    className="dropdown-item"
-                    to="/technicians/new"
-                  >
+                  <NavLink className="dropdown-item" to="/technicians/new">
                     Create an Technician
                   </NavLink>
                 </li>
