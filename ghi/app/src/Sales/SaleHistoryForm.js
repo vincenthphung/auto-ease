@@ -11,18 +11,21 @@ const CreateSaleRecordForm = () => {
     const [price, setPrice] = useState("");
     const [submitted, setSubmitted] = useState(false);
 
-    useEffect(() => {
-        async function fetchAutomobiles() {
-            const url = "http://localhost:8090/api/automobilevo/";
-            const response = await fetch(url);
 
-            if (response.ok) {
-                const data = await response.json();
-                setAutomobiles(data.automobiles);
-            }
-        }
+    useEffect(() => {
         fetchAutomobiles();
     }, []);
+
+    async function fetchAutomobiles() {
+        const url = "http://localhost:8090/api/automobilevo/";
+        const response = await fetch(url);
+
+        if (response.ok) {
+            const data = await response.json();
+            setAutomobiles(data.automobiles);
+        };
+    }
+
 
     useEffect(() => {
         async function fetchSalesPeople() {
@@ -58,7 +61,7 @@ const CreateSaleRecordForm = () => {
         delete data.salesPerson;
 
 
-        const salesRecordUrl = "http://localhost:8090/api/sales/";
+        const salesHistoryUrl = "http://localhost:8090/api/sales/";
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(data),
@@ -67,14 +70,16 @@ const CreateSaleRecordForm = () => {
             },
         };
 
-        const response = await fetch(salesRecordUrl, fetchConfig);
+        const response = await fetch(salesHistoryUrl, fetchConfig);
         if (response.ok) {
             const newSalesRecord = await response.json();
+
             setSubmitted(true);
             setAutomobile("");
             setSalesPerson("");
             setCustomer("");
             setPrice("");
+            fetchAutomobiles();
         }
     };
 
@@ -83,33 +88,20 @@ const CreateSaleRecordForm = () => {
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
                     <h1>Report a new sale</h1>
-                    <form id="create-new-sales-record-form" onSubmit={handleSubmit}>
+                    <form id="create-newsales-form" onSubmit={handleSubmit}>
                         <div className="mb-3">
-                            <select
-                                onChange={(e) => setAutomobile(e.target.value)}
-                                required
-                                name="Automobile"
-                                id="automobile"
-                                className="form-select"
-                                value={automobile}>
+                            <select onChange={(e) => setAutomobile(e.target.value)} required name="Automobile" id="automobile" className="form-select" value={automobile}>
                                 <option value="">Choose an automobile</option>
                                 {automobiles.map((automobile) => {
                                     return (
                                         <option key={automobile.vin} value={automobile.vin}>
                                             {automobile.vin}
                                         </option>
-                                    );
-                                })}
+                                    );})}
                             </select>
                         </div>
                         <div className="mb-3">
-                            <select
-                                onChange={(e) => setSalesPerson(e.target.value)}
-                                required
-                                name="Sales Person"
-                                id="sales_people"
-                                className="form-select"
-                                value={salesPerson}>
+                            <select onChange={(e) => setSalesPerson(e.target.value)} required name="Sales Person" id="sales_people" className="form-select" value={salesPerson}>
                                 <option value="">Choose a sales person</option>
                                 {salesPeople.map((salesPerson) => {
                                     return (
@@ -121,13 +113,7 @@ const CreateSaleRecordForm = () => {
                             </select>
                         </div>
                         <div className="mb-3">
-                            <select
-                                onChange={(e) => setCustomer(e.target.value)}
-                                required
-                                name="Customer"
-                                id="customer"
-                                className="form-select"
-                                value={customer}>
+                            <select onChange={(e) => setCustomer(e.target.value)} required name="Customer" id="customer" className="form-select" value={customer}>
                                 <option value="">Choose a customer</option>
                                 {customers.map((customer) => {
                                     return (
@@ -139,18 +125,10 @@ const CreateSaleRecordForm = () => {
                             </select>
                         </div>
                         <div className="form-floating mb-3">
-                            <input
-                                onChange={(e) => setPrice(e.target.value)}
-                                placeholder="Price"
-                                required
-                                type="text"
-                                name="price"
-                                id="price"
-                                className="form-control"
-                                value={price}
-                            />
+                            <input onChange={(e) => setPrice(e.target.value)} placeholder="Price" required type="text" name="price" id="price" className="form-control" value={price} />
                             <label htmlFor="price">Sale price</label>
                         </div>
+
                         <button className="btn btn-primary">Create</button>
                     </form>
                     {submitted && (
@@ -165,5 +143,3 @@ const CreateSaleRecordForm = () => {
 };
 
 export default CreateSaleRecordForm;
-
-
