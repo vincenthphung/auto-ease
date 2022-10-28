@@ -8,6 +8,7 @@ class DateEncoder(JSONEncoder):
     def default(self, o):
         if isinstance(o, datetime):
             return o.isoformat()
+
         else:
             return super().default(o)
 

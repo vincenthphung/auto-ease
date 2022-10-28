@@ -3,22 +3,21 @@ import React, { useState, useEffect } from "react";
 const TechnicianList = () => {
   const [technician, setTechnician] = useState([]);
 
-  const url = "http://localhost:8080/api/technicians/";
-
-  const fetchTechnician = async () => {
-    try {
-      const response = await fetch(url);
-      const content = await response.json();
-      if (response.ok) {
-        setTechnician(content.technicians);
-        console.log(content);
-      }
-    } catch (e) {
-      console.log("error", e);
-    }
-  };
-
   useEffect(() => {
+    const fetchTechnician = async () => {
+      const url = "http://localhost:8080/api/technicians/";
+      try {
+        const response = await fetch(url);
+        const content = await response.json();
+        if (response.ok) {
+          setTechnician(content.technicians);
+          console.log(content);
+        }
+      } catch (e) {
+        console.log("error", e);
+      }
+    };
+
     fetchTechnician();
   }, []);
 
@@ -60,7 +59,7 @@ const TechnicianList = () => {
           ))}
         </tbody>
       </table>
-      <a href="http://localhost:3000/service/new_technician">
+      <a href="http://localhost:3000/technicians/new">
         <button className="btn btn-success"> Create Technician</button>
       </a>
     </div>

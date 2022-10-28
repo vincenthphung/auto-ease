@@ -10,6 +10,9 @@ import AutomobileForm from './Inventory/AutomobileForm';
 
 import TechnicianCreate from './Services/TechnicianCreate';
 import TechnicianList from './Services/TechnicianList';
+import ServiceList from './Services/ServiceList';
+import ServiceCreate from './Services/ServiceCreate';
+import SearchHistory from './Services/SearchHistory';
 
 import AddPotentialCustomerForm from './Sales/PotentialCustomerForm';
 import CreateSaleRecordForm from './Sales/SaleHistoryForm';
@@ -24,24 +27,30 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route
-            path="/manufacturers/new"
-            element={<ManufacturerCreateForm />}
-          />
-          <Route path="/manufacturers" element={<ManufacturersList />} />
-          <Route path="/createmodels" element={<MakeCar />} />
-          <Route path="/vehiclemodels" element={<VehicleModelsList />} />
-          <Route path="/automobiles">
-            <Route index element={<AutomobileList />} />
-            <Route path="new" element={<AutomobileForm />} />
+          <Route path="technicians/new" element={<TechnicianCreate />} />
+          <Route path="technicians/" element={<TechnicianList />} />
+
+          <Route path="manufacturers">
+            <Route path="" element={<ManufacturersList />} />
+            <Route path="new/" element={<ManufacturerCreateForm />} />
           </Route>
-          <Route path="service">
-            {/* <Route index element={<ServiceList />} />
-            <Route path="new" element={<ServiceCreate />} />
-            <Route path="search" element={<ServiceSearch />} /> */}
-            <Route path="new_technician" element={<TechnicianCreate />} />
-            <Route path="list_technician" element={<TechnicianList />} />
+
+          <Route path="models">
+            <Route path="" element={<VehicleModelsList />} />
+            <Route path="create/" element={<MakeCar />} />
           </Route>
+
+          <Route path="automobiles">
+            <Route path="" element={<AutomobileList />} />
+            <Route path="new/" element={<AutomobileForm />} />
+          </Route>
+
+          <Route path="appointments">
+            <Route path='' element={<ServiceList />} />
+            <Route path="new/" element={<ServiceCreate />} />
+            <Route path="history/" element={<SearchHistory />} />
+          </Route>
+
 
           <Route
             path="/potentialcustomer/new"

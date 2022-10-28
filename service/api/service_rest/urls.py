@@ -1,37 +1,11 @@
 from django.urls import path
-
-from .views import (
-  api_list_services,
-  api_list_technicians,
-  api_show_service,
-  api_show_technician,
-  )
+from .views import (list_appointments, show_appointment, list_techs, show_technician)
 
 urlpatterns = [
-    path("services/", api_list_services, name="api_create_services"),
-    path(
-      "automobiles/<int:auto_vo_id>/services/",
-      api_list_services,
-      name="api_list_services",
-    ),
-
-    path(
-      "services/<int:pk>/",
-      api_show_service,
-      name="api_show_service",
-    ),
-
-    path(
-      "technicians/",
-      api_list_technicians,
-      name="api_list_technicians",
-    ),
-
-    path(
-      "technicians/<int:pk>/",
-      api_show_technician,
-      name="api_list_technicians",
-    ),
-
+    path("appointments/", list_appointments, name="list_appointments"),
+    path("appointments/<str:vin>/", list_appointments,
+         name="list_appointments_vin"),
+    path("appointments/detail/<int:pk>/", show_appointment, name="show_appointment"),
+    path("technicians/", list_techs, name="list_techs"),
+    path("technicians/<int:pk>/", show_technician, name="show_technician")
 ]
-

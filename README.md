@@ -5,38 +5,41 @@ About:
 * Car Dealership Management
 
 Team:
+- Vincent -Services
+- Christie -Sales
 
-* Vincent Phung  - Services microservice
-* Christie Sun - Sales microservice
+## Design
+CarCar is an application with three microservices Inventory, Sales and Services used for managing feature of an dealership. The main aggregate root would be Inventory because the aggregates of Services and Sales rely on data that is stored in Inventory.
 
-## Diagram
+Below is a diagram that illustrate the relationships between these services with the frontend and backend of the application. The backend of this application was developed using a Django framework and React for the frontend of the application.
 
-"excalidraw.png"
+<img src="./img/CarCarDesign.png">
+
 
 
 ## Getting Started
-- Fork the project
-- In the terminal, go to your project directory
-- Then, running following commands:
-  * git clone https://gitlab.com/<gitlab_username>/project-beta
-  * docker volume create beta-data
-  * docker-compose build
-  * docker-compose up
-  
-- Make sure all the containers are running well
-- Open Chrome browser and go to "http://localhost:3000/"
+Please following directions to start the application:
+1. Fork and clone from the repository
+2. Open a terminal and navigate to the directory where this application will be stored.
+3. Use `code .` on to open the application in Visual Studio Code.
+4. This application require using Docker, you'll need to execute the following commands in the terminal:
 
+        docker volume create beta-data
+        docker-compose build
+        docker-compose up
 
-## How it works
+5. To view the application, go to http://localhost:3000.
 
-## Inventory microservice
-- Localhost for login: "http://localhost:8100/admin"
-- It is the bounded context within the domain
+6. Feel free the browse the site to see data you will need to create the data using the forms in nav bar.
+
+# Inventory microservice
+
+- it is the bounded contexts
 - Manufacturers, vehicle models and automobiles are the Entities
 - Inventory can be tracked in these 3 models: Manufacturer, VehicleModel, Automobile
 
-  * Allows users to:
-  
+  * Allows you to:
+
   - view the manufacturers list
   - add a new manufacturers
   - view a list of vehicle models information(name, manufacturer)
@@ -44,23 +47,31 @@ Team:
   - add a new automobile in inventory form
   - add a new vehicle model
 
+# Service microservice
+ Technician creation form:
+  * tech's name (char field)
+  * employee id (small positive integer field)
+ Service appointment form:
+  * VIN (positive integer field)
+  * customer name (char field)
+  * date/time of the appointment (date/time field)
+  * assigned technician (foreign key)
+  * reason for the service appointment (text field)
+ Show list of scheduled appointments:
+  * VIN, customer name, date/time of appt, assigned technician, reason for service
+  * If there's a VIN, the car was purchased from the dealership. Mark as VIP
+  * Cancel (delete) button for each appointment
+  * If appointment has finished, show a finished status
+  * If appt is canceled or finished, it should no longer show up in the list of appointments
+ Create a page that allows someone to search for a list of past service appoints by VIN. List should have:
+  - Customer name, date and time of the appointment, the assigned technician, and reason for service
 
-## Service Microservice To do's
-- Localhost for login: "http://localhost:8080/admin"
-- It is the bounded context within the domain
-- AutomobileVO, Service, and Techinican are the Entities
-- Technician creation form
-- Service appointment form
-- Show list of scheduled appointments
-- Create a search page that allows customers to search for services
+- Create navbar links:
+  * Create technician form
+  * Service appointment form
+  * List of appointments
+  * List of past service appointments filterable by VIN
 
-- Create navbar links (Front-end):
-  - Create technician form
-  - Service
-  - List of services
-  - List of past services filter by VIN
-
-----------------------------------------------------------------
 ## Sales microservice
 - Localhost for login: "http://localhost:8090/admin"
 - It is the bounded context within the domain
