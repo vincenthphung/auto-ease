@@ -28,6 +28,8 @@ class AddSalesPersonForm extends React.Component {
     async handleOnSubmit(event) {
         event.preventDefault()
         const data = { ...this.state }
+        data["employee_id"] = data["id"]
+        delete data.id
         delete data.hasSignedUp;
 
         const url = 'http://localhost:8090/api/sales/person/';
@@ -42,7 +44,6 @@ class AddSalesPersonForm extends React.Component {
         const response = await fetch(url, fetchConfig);
         if (response.ok) {
             const newSalesPerson = await response.json();
-
             const cleared = {
                 name: '',
                 id: '',
@@ -87,3 +88,4 @@ class AddSalesPersonForm extends React.Component {
 }
 
 export default AddSalesPersonForm;
+
