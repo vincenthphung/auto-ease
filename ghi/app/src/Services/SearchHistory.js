@@ -19,7 +19,7 @@ const SearchHistory = () => {
     fetchService();
   }, []);
 
-  const handleSearch = async (e) => {
+  const handleSearch = async (event) => {
     const results = service.filter((appointment) =>
       appointment.vin.includes(searchVin)
     );

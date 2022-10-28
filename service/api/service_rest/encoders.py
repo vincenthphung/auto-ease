@@ -2,6 +2,11 @@ from common.json import ModelEncoder
 from .models import Appointment, Technician
 
 
+class TechnicianEncoder(ModelEncoder):
+    model = Technician
+    properties = ["name", "id", "employee_number"]
+
+
 class AppointmentEncoder(ModelEncoder):
     model = Appointment
     properties = [
@@ -18,8 +23,3 @@ class AppointmentEncoder(ModelEncoder):
     encoders = {
         "technician": TechnicianEncoder(),
     }
-
-
-class TechnicianEncoder(ModelEncoder):
-    model = Technician
-    properties = ["name", "id", "employee_number"]

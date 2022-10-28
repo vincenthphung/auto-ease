@@ -17,7 +17,6 @@ const TechnicianList = () => {
         console.log("error", e);
       }
     };
-
     fetchTechnician();
   }, []);
 
@@ -38,6 +37,7 @@ const TechnicianList = () => {
           <tr>
             <th>Name</th>
             <th>Employee Number</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -50,10 +50,8 @@ const TechnicianList = () => {
                 <button
                   onClick={() => deletedTechnician(technician.id)}
                   type="button"
-                  className="btn btn-outline-danger"
-                >
-                  Delete
-                </button>
+                  className="btn btn-danger"
+                >Delete</button>
               </td>
             </tr>
           ))}

@@ -15,8 +15,6 @@ Below is a diagram that illustrate the relationships between these services with
 
 <img src="./img/CarCarDesign.png">
 
-
-
 ## Getting Started
 Please following directions to start the application:
 1. Fork and clone from the repository
@@ -47,26 +45,58 @@ Please following directions to start the application:
   - add a new automobile in inventory form
   - add a new vehicle model
 
-# Service microservice
- Technician creation form:
-  * tech's name (char field)
-  * employee id (small positive integer field)
- Service appointment form:
-  * VIN (positive integer field)
-  * customer name (char field)
-  * date/time of the appointment (date/time field)
-  * assigned technician (foreign key)
-  * reason for the service appointment (text field)
- Show list of scheduled appointments:
-  * VIN, customer name, date/time of appt, assigned technician, reason for service
-  * If there's a VIN, the car was purchased from the dealership. Mark as VIP
-  * Cancel (delete) button for each appointment
-  * If appointment has finished, show a finished status
-  * If appt is canceled or finished, it should no longer show up in the list of appointments
- Create a page that allows someone to search for a list of past service appoints by VIN. List should have:
-  - Customer name, date and time of the appointment, the assigned technician, and reason for service
+- RESTful APIs Endpoints for Automobile:
+  * "GET" List automobiles: "http://localhost:8100/api/automobiles/"
+  * "POST" Create an automobiles: "http://localhost:8100/api/automobiles/"
+  * "GET" Get a specific automobile: "http://localhost:8100/api/automobiles/:vin/"
+  * "PUT" Upadate a specific automobile: "http://localhost:8100/api/automobiles/:vin/"
+  * "DEL" Delete a specific automobile: "	http://localhost:8100/api/automobiles/:vin/"
 
-- Create navbar links:
+- RESTful APIs Endpoints for VehicleModel:
+  * "GET" List vehicle models: "http://localhost:8100/api/models/",
+  * "POST" Create a vehicle model: "http://localhost:8100/api/models/"
+  * "GET" Get a specific vehicle model: "http://localhost:8100/api/models/:id/"
+  * "PUT" Update a specific vehicle model: "http://localhost:8100/api/models/:id/"
+  * "DEL" Delete a specific vehicle model: "http://localhost:8100/api/models/:id/"
+
+- RESTful APIs Endpoints for Manufacturer:
+  * "GET" List manufacturers: "http://localhost:8100/api/manufacturers/"
+  * "POST" Create a manufacturer: "http://localhost:8100/api/manufacturers/"
+  * "GET" Get a specific manufacturer: "http://localhost:8100/api/manufacturers/:id/"
+  * "PUT" Update a manufacturer: "http://localhost:8100/api/manufacturers/:id/"
+  * "DEL" Delete a specific manufacturer: "http://localhost:8100/api/manufacturers/:id/"
+
+
+# Service microservice
+
+## Features
+ -  Allows you to:
+
+  * Schedule an appointment for service by providing a VIN number, name, date/time of the appointment, and the reason for the service.
+  * View a list of appointment for service.
+  * View and search for past appointments by VIN
+  * Create a technician by providing the technican name and employee number.
+  * View a list of enrolled technicians.
+
+## RESTful APIs Endpoints
+## Technican:
+  * "GET" List technicians: http://localhost:8080/api/technicians/
+  * "POST" Create an technicians: http://localhost:8080/api/technicians/
+  * "GET" Get a specific technician: http://localhost:8080/api/technicians/<int:pk>/
+  * "DEL" Delete a specific technician: http://localhost:8080/api/technicians/<int:pk>/
+
+
+## Appointment:
+  * "GET" List appointments: "http://localhost:8080/api/appointments/"
+  * "POST" Create an appointments: "http://localhost:8080/api/appointments/"
+
+  * "GET" Get a specific appointment by vin: "http://localhost:8080/api/appointments/detail/<str:vin>/"
+  * "Get" Get a specific appointment: "http://localhost:8080/api/appointments/detail/<int:pk>/"
+  * "PUT" Upadate a specific appointment: "http://localhost:8080/api/appointments/detail/<int:pk>/"
+  * "DEL" Delete a specific appointment: "http://localhost:8080/api/appointments/detail/<int:pk>/"
+
+## Project Tasks
+  * Create navbar links:
   * Create technician form
   * Service appointment form
   * List of appointments
@@ -96,3 +126,26 @@ Please following directions to start the application:
   * a new sale record form
   * a specific sales person history page
   * a list of sales page
+
+- RESTful APIs Endpoints for Sales microservice:
+  - For sales person:
+    * "GET" List sales people: "http://localhost:8090/api/sales/person/"
+    * "GET" Get a specific sales person: "http://localhost:8090/api/sales/person/<int:pk>/"
+    * "GET" Get a sales record from a specific sales person: "http://localhost:8090/api/sales/person/<int:employee_id>/sales/"
+    * "POST" Create a sales person: "http://localhost:8090/api/sales/person/"
+    * "DEL" Delete a specific sales person: "http://localhost:8090/api/sales/person/<int:pk>/"
+
+  - For customers:
+    * "GET" List all customers: "http://localhost:8090/api/sales/potentialcustomer/"
+    * "GET" Get a specific customer: "http://localhost:8090/api/sales/potentialcustomer/<int:pk>/"
+    * "POST" Create a customer: "http://localhost:8090/api/sales/potentialcustomer/"
+    * "DEL" Delete a specific customer: "http://localhost:8090/api/sales/potentialcustomer/<int:pk>/"
+
+  - For sales history:
+    * "GET" List all sales: "http://localhost:8090/api/sales/"
+    * "GET" Get a specific sales history: "http://localhost:8090/api/sales/<int:pk>/"
+    * "POST" Create a new sale record: "http://localhost:8090/api/sales/"
+    * "DEL" Delete a specific sale record: "http://localhost:8090/api/sales/<int:pk>/"
+
+  - For automobiles:
+    * "GET" List unsold automobiles: "http://localhost:8090/api/automobilevo/"
