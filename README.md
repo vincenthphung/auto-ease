@@ -1,5 +1,9 @@
 # CarCar
 
+About:
+
+* Car Dealership Management
+
 Team:
 - Vincent -Services
 - Christie -Sales
@@ -32,7 +36,7 @@ Please following directions to start the application:
 
 - it is the bounded contexts
 - Manufacturers, vehicle models and automobiles are the Entities
-- Has 3 models: Manufacturer, VehicleModel, Automobile
+- Inventory can be tracked in these 3 models: Manufacturer, VehicleModel, Automobile
 
   * Allows you to:
 
@@ -69,13 +73,15 @@ Please following directions to start the application:
   * List of past service appointments filterable by VIN
 
 ## Sales microservice
+- Localhost for login: "http://localhost:8090/admin"
+- It is the bounded context within the domain
 - Track the sales information from inventory
-- Manufacturers, models and cars are the Value Objects
-- Has 4 models: AutomobileVO, SalesPerson, PotentialCustomer, and SaleHistory.
+- Has 4 models: AutomobileVO, SalesPerson, PotentialCustomer, and SalesHistory.
   *AutomobileVO is a data which polled from the Automobile model within the Inventory Microservice
+- AutomobileVO, SalesPerson, PotentialCustomer, and SalesHistory are the Entities
 
 
-  * Allows you to:
+  * Allows users to:
 
   - add a new sales person name and id into the system
   - add a new potential customer's  name, address, and phone number
@@ -84,7 +90,7 @@ Please following directions to start the application:
   - once many sales is completed, the system is able to access information of a specific sales
   - once an automobile is sold, remove its vin from inventory
 
-- Nav bar links:
+- Nav bar links (Front-end)
   * a sales person form
   * a customer form
   * a new sale record form
