@@ -79,7 +79,7 @@ function Nav() {
                 <li className="nav-item">
                   <NavLink
                     className="dropdown-item"
-                    to="service/new_technician/"
+                    to="/technicians/new"
                   >
                     Create Technician
                   </NavLink>
@@ -88,24 +88,24 @@ function Nav() {
                 <li className="nav-item">
                   <NavLink
                     className="dropdown-item"
-                    to="service/list_technician"
+                    to="technicians/"
                   >
                     List Technician
                   </NavLink>
                 </li>
 
                 <li className="nav-item">
-                  <NavLink className="dropdown-item" to="/service">
+                  <NavLink className="dropdown-item" to="appointments/">
                     Service List
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="dropdown-item" to="/service/new">
+                  <NavLink className="dropdown-item" to="/appointments/new">
                     Create Service
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="dropdown-item" to="/service/search">
+                  <NavLink className="dropdown-item" to="/appointments/history">
                     Service History
                   </NavLink>
                 </li>

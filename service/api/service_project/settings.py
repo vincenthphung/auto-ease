@@ -31,13 +31,13 @@ DEBUG = True
 
 INSTALLED_APPS = [
     'corsheaders',
-    'service_rest.apps.ServiceRestConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'service_rest.apps.ServiceRestConfig',
 ]
 
 MIDDLEWARE = [
@@ -50,16 +50,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ALLOWED_HOSTS = [
-    "localhost",
-    'service-poller',
-    'service-api'
-]
+ALLOWED_HOSTS = ["localhost"]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
-    "http://localhost:8100",
-    "http://localhost:8090",
 ]
 
 CORS_ALLOWED_ORIGINS = [
