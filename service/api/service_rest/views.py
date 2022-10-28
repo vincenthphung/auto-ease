@@ -15,7 +15,7 @@ def list_appointments(request, vin=None):
             {"appointments": appointments},
             encoder=AppointmentEncoder
         )
-        #test
+
         else:
             try:
                 appointments = Appointment.objects.filter(vin=vin)
@@ -29,7 +29,7 @@ def list_appointments(request, vin=None):
                 response.status_code = 404
                 return response
 
-    else:  # POST
+    else:
         content = json.loads(request.body)
         try:
             tech_id = content["technician"]
@@ -102,7 +102,7 @@ def list_technicians(request):
             {"technicians": technicians},
             encoder=TechnicianEncoder
         )
-    else:  # POST
+    else:
         content = json.loads(request.body)
         technician = Technician.objects.create(**content)
 
@@ -139,7 +139,7 @@ def show_technician(request, pk):
             response = JsonResponse({"message": "Technician does note exist"})
             response.status_code = 404
             return response
-    else:  # PUT
+    else:
         content = json.loads(request.body)
         Technician.objects.filter(id=pk).update(**content)
         technician = Technician.objects.get(id=pk)

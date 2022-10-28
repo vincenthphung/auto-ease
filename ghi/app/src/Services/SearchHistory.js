@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from "react";
 
 const SearchHistory = () => {
-  const [appointments, setAppointments] = useState([]);
+  const [service, setService, ] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [searchVin, setSearchVin] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
-    const fetchAppointments = async () => {
+    const fetchService = async () => {
       const url = "http://localhost:8080/api/appointments/";
       const response = await fetch(url);
 
       if (response.ok) {
         const data = await response.json();
-        setAppointments(data.appointments);
+        setService(data.appointments);
       }
     };
-    fetchAppointments();
+    fetchService();
   }, []);
 
   const handleSearch = async (event) => {
-    const results = appointments.filter((appointment) =>
+    const results = service.filter((appointment) =>
       appointment.vin.includes(searchVin)
     );
     setFiltered(results);
@@ -30,7 +30,7 @@ const SearchHistory = () => {
   return (
     <React.Fragment>
       <div className="px-4 py-5 my-1 mt-0 text-center">
-        <h1 className="display-5">Service Appointment History</h1>
+        <h1 className="display-5">Appointment History</h1>
       </div>
       <div className="row height d-flex justify-content-center align-items-center">
         <div className="col-md-auto">
