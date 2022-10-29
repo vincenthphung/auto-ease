@@ -8,8 +8,7 @@ export default function ListSalesPage() {
         fetch("http://localhost:8090/api/sales/")
         .then(res => res.json())
         .then(data => {setModels(data.sales);
-        // console.log(data)
-    });
+        });
     }, [])
 
     return(
@@ -43,4 +42,6 @@ export default function ListSalesPage() {
         </div>
     )
 }
+    
+
     
