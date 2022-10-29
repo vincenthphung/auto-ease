@@ -88,9 +88,9 @@ const AppointmentsList = () => {
                   <td>
                     <button
                       onClick={(e) => deleteAppointment(appointment.id)}
-                      className="btn btn-secondary m-2"
+                      className="btn btn-danger m-2"
                     >
-                      Delete
+                      Cancel
                     </button>
 
                     <button

@@ -19,7 +19,7 @@ const SearchHistory = () => {
     fetchService();
   }, []);
 
-  const handleSearch = async (event) => {
+  const handleSearch = async () => {
     const results = service.filter((appointment) =>
       appointment.vin.includes(searchVin)
     );
@@ -28,8 +28,9 @@ const SearchHistory = () => {
   };
 
   const styles = {
-    fontSize: 55,
-    fontWeight: "bold",
+    fontFamily: "Montserrat sans-serif",
+    fontSize: 60,
+    // fontWeight: "bold",
     color: "#3e9b6f",
   };
 
@@ -95,7 +96,7 @@ const SearchHistory = () => {
       )}
       {submitted && filtered.length === 0 && (
         <div className="alert alert-danger mb-0 p-4 mt-4" id="danger-message">
-          The VIN you entered has no appointment history.
+          The VIN entered has no appointment history.
         </div>
       )}
     </React.Fragment>

@@ -1,4 +1,4 @@
-import react, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const AutomobileForm = () => {
 	const [automobile, setAutomobile] = useState({
@@ -52,7 +52,7 @@ const AutomobileForm = () => {
 			<div className='row'>
 				<div className='offset-3 col-6'>
 					<div className='shadow p-4 mt-4'>
-						<h1>Create a New Automobile</h1>
+						<h1>Add an automobile to inventory</h1>
 
 						<form onSubmit={handleSubmit} className='form'>
 							<div className='form-floating mb-3'>
