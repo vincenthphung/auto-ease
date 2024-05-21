@@ -14,80 +14,75 @@ const TechnicianCreate = () => {
 
     const techUrl = "http://localhost:8080/api/technicians/";
     const fetchConfig = {
-      method: "post",
+      method: "POST",
       body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
     };
 
-    const response = await fetch(techUrl, fetchConfig);
-    if (response.ok) {
-      event.target.reset();
-      setName("");
-      setEmployeeNumber("");
-      setSubmitted(true);
-      setInvalid("");
-    } else {
-      console.error("Invalid employee number");
+    try {
+      const response = await fetch(techUrl, fetchConfig);
+      if (response.ok) {
+        event.target.reset();
+        setName("");
+        setEmployeeNumber("");
+        setSubmitted(true);
+        setInvalid(false);
+      } else {
+        console.error("Invalid employee number or the number is already in use.");
+        setInvalid(true);
+      }
+    } catch (error) {
+      console.error("Failed to fetch:", error);
       setInvalid(true);
     }
   };
 
   return (
-    <div className="row">
-      <div className="offset-3 col-6">
-        <div className="shadow p-4 mt-4">
-          <h1 className="text-center">Create a Technician</h1>
-          <form id="create-technician-form" onSubmit={handleSubmit}>
-            <div className="form-floating mb-3">
-              <input
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Name"
-                required
-                type="text"
-                name="name"
-                id="name"
-                className="form-control"
-              />
-              <label htmlFor="name">Technician Name</label>
-            </div>
-            <div className="form-floating mb-3">
-              <input
-                onChange={(e) => setEmployeeNumber(e.target.value)}
-                placeholder="employeeNumber"
-                required
-                type="employeeNumber"
-                name="employeeNumber"
-                id="employeeNumber"
-                className="form-control"
-              />
-              <label htmlFor="employeeNumber">Employee Number</label>
-            </div>
-            <div className="col text-center">
-              <button className="btn btn-primary">Create</button>
-            </div>
-          </form>
-          {invalid && (
-            <div
-              className="alert alert-danger mb-0 p-4 mt-4"
-              id="success-message"
-            >
-              You have put an invalid employee number or that number is already
-              in use.
-            </div>
-          )}
-          {!invalid && submitted && (
-            <div
-              className="alert alert-success mb-0 p-4 mt-4"
-              id="success-message"
-            >
-              You have added a new employee!
-            </div>
-          )}
+    <div className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-lg mt-10">
+      <h1 className="text-2xl font-bold mb-6 text-center text-blue-700">Create a Technician</h1>
+      <form id="create-technician-form" onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label htmlFor="name" className="block text-sm font-medium text-gray-700">Technician Name</label>
+          <input
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Name"
+            required
+            type="text"
+            name="name"
+            id="name"
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+          />
         </div>
-      </div>
+        <div>
+          <label htmlFor="employeeNumber" className="block text-sm font-medium text-gray-700">Employee Number</label>
+          <input
+            onChange={(e) => setEmployeeNumber(e.target.value)}
+            placeholder="Employee Number"
+            required
+            type="text"
+            name="employeeNumber"
+            id="employeeNumber"
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+          />
+        </div>
+        <div className="text-center">
+          <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            Create
+          </button>
+        </div>
+      </form>
+      {invalid && (
+        <div className="bg-red-100 text-red-800 py-2 px-4 rounded-md text-center mt-4">
+          You have put an invalid employee number or that number is already in use.
+        </div>
+      )}
+      {!invalid && submitted && (
+        <div className="bg-green-100 text-green-800 py-2 px-4 rounded-md text-center mt-4">
+          You have added a new employee!
+        </div>
+      )}
     </div>
   );
 };
+
 export default TechnicianCreate;

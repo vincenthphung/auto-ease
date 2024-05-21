@@ -1,10 +1,14 @@
 from django.urls import path
-from .views import (list_appointments, show_appointment, list_techs, show_technician)
+from .views import (
+    api_show_technician,
+    api_show_appointment,
+    api_create_technician,
+    api_create_appointment,
+)
 
 urlpatterns = [
-    path("appointments/", list_appointments, name="list_appointments"),
-    path("appointments/<str:vin>/", list_appointments, name="list_appointments_vin"),
-    path("appointments/detail/<int:pk>/", show_appointment, name="show_appointment"),
-    path("technicians/", list_techs, name="list_techs"),
-    path("technicians/<int:pk>/", show_technician, name="show_technician")
+    path("technicians/<int:pk>/", api_show_technician, name="show_technician"),
+    path("appointments/<int:pk>/", api_show_appointment, name="show_appointment"),
+    path("technicians/", api_create_technician, name="create_technician"),
+    path("appointments/", api_create_appointment, name="create_appointment"),
 ]

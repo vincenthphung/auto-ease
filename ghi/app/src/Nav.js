@@ -1,163 +1,76 @@
 import { NavLink } from "react-router-dom";
+import { useState } from 'react';
 
 function Nav() {
-  return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-success">
-      <div className="container-fluid">
-        <NavLink className="navbar-brand" to="/">
-          CarCar
-        </NavLink>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <div className="dropdown">
-              <button
-                className="btn dropdown-toggle"
-                type="button"
-                id="dropdownMenuButton1"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Inventory
-              </button>
-              <ul
-                className="dropdown-menu"
-                aria-labelledby="dropdownMenuButton1"
-              >
-                <li className="nav-item">
-                  <NavLink className="dropdown-item" to="manufacturers/new">
-                    Create a Manufacturer
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink className="dropdown-item" to="manufacturers/">
-                    List of Manufacturers
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink className="dropdown-item" to="models/create">
-                    Create a Vehicle Model
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink className="dropdown-item" to="models/">
-                    List of Vehicle Models
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink className="dropdown-item" to="automobiles/">
-                    List of Automobiles
-                  </NavLink>
-                </li>
-              </ul>
+    return (
+        <nav className="bg-blue-700 p-4 shadow-md">
+            <div className="container mx-auto flex justify-between items-center">
+                <NavLink className="text-white font-bold text-xl" to="/">Auto Ease</NavLink>
+                <div className="flex space-x-6">
+                    <DropdownMenu title="Inventory" links={[
+                        { to: "manufacturers/new", label: "Create a Manufacturer" },
+                        { to: "manufacturers/", label: "List of Manufacturers" },
+                        { to: "models/new", label: "Create a Vehicle Model" },
+                        { to: "models/", label: "List of Vehicle Models" },
+                        { to: "automobiles/new", label: "Create an Automobile" },
+                        { to: "automobiles/", label: "List of Automobiles" }
+                    ]} />
+                    <DropdownMenu title="Sales" links={[
+                        { to: "salesperson/new", label: "Add a Sales Employee" },
+                        { to: "customers/new", label: "Add a Customer" },
+                        { to: "sales/new", label: "Create a Sales Record" },
+                        { to: "sales/list", label: "List of Sales" },
+                        { to: "sales/history", label: "Employee Sales History" }
+                    ]} />
+                    <DropdownMenu title="Services" links={[
+                        { to: "technicians/new", label: "Create a Technician" },
+                        { to: "appointments/new", label: "Create an Appointment" },
+                        { to: "appointments/", label: "List of Appointments" },
+                        { to: "appointments/history", label: "Appointment History" }
+                    ]} />
+                </div>
             </div>
+        </nav>
+    );
+}
 
-            <div className="dropdown">
-              <button
-                className="btn dropdown-toggle"
-                type="button"
-                id="dropdownMenuButton1"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Services
-              </button>
-              <ul
-                className="dropdown-menu"
-                aria-labelledby="dropdownMenuButton1"
-              >
-                <li className="nav-item">
-                  <NavLink className="dropdown-item" to="/technicians/new">
-                    Create an Technician
-                  </NavLink>
-                </li>
+function DropdownMenu({ title, links }) {
+    const [isOpen, setIsOpen] = useState(false);
 
-                <li className="nav-item">
-                  <NavLink
-                    className="dropdown-item"
-                    to="technicians/"
-                  >
-                    List of Technicians
-                  </NavLink>
-                </li>
+    const toggleDropdown = () => setIsOpen(!isOpen);
 
-                <li className="nav-item">
-                  <NavLink className="dropdown-item" to="appointments/">
-                    List of Appointments
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink className="dropdown-item" to="appointments/new">
-                    Create an Appointment
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink className="dropdown-item" to="appointments/history">
-                    Appointment History
-                  </NavLink>
-                </li>
-              </ul>
-            </div>
+    // Close dropdown if clicked outside
+    function handleOutsideClick(event) {
+        if (!event.currentTarget.contains(event.relatedTarget)) {
+            setIsOpen(false);
+        }
+    }
 
-            <div className="dropdown">
-              <button
-                className="btn dropdown-toggle"
-                type="button"
-                id="dropdownMenuButton1"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Sales
-              </button>
-              <ul
-                className="dropdown-menu"
-                aria-labelledby="dropdownMenuButton1"
-              >
-                <li className="nav-item">
-                  <NavLink
-                    className="dropdown-item"
-                    to="/potentialcustomer/new"
-                  >
-                    Add a customer
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink className="dropdown-item" to="/salesperson/new">
-                    Add a sales person
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink className="dropdown-item" to="/sales/new">
-                    Record a New Sale
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink className="dropdown-item" to="/sales/list">
-                    List of Sales
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink className="dropdown-item" to="/saleshistory">
-                    Sales History
-                  </NavLink>
-                </li>
-              </ul>
-            </div>
-          </ul>
+    return (
+        <div className="relative" onBlur={handleOutsideClick}>
+            <button
+                onClick={toggleDropdown}
+                className="text-white bg-blue-800 hover:bg-blue-900 font-medium rounded-md px-4 py-2 focus:outline-none transition duration-300"
+            >
+                {title}
+            </button>
+            {isOpen && (
+                <ul className="absolute bg-white shadow-lg rounded-md mt-2 w-56 z-10 transition duration-300">
+                    {links.map(link => (
+                        <li key={link.to} className="border-b last:border-b-0">
+                            <NavLink
+                                onClick={() => setIsOpen(false)}
+                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 transition duration-300"
+                                to={link.to}
+                            >
+                                {link.label}
+                            </NavLink>
+                        </li>
+                    ))}
+                </ul>
+            )}
         </div>
-      </div>
-    </nav>
-  );
+    );
 }
 
 export default Nav;

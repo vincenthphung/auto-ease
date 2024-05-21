@@ -24,7 +24,7 @@ function App() {
   return (
     <BrowserRouter>
       <Nav />
-      <div className="container">
+      <div className="container mx-auto p-4">
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="technicians/new" element={<TechnicianCreate />} />
@@ -37,7 +37,7 @@ function App() {
 
           <Route path="models">
             <Route path="" element={<VehicleModelsList />} />
-            <Route path="create/" element={<MakeCar />} />
+            <Route path="new/" element={<MakeCar />} />
           </Route>
 
           <Route path="automobiles">
@@ -53,13 +53,13 @@ function App() {
 
 
           <Route
-            path="/potentialcustomer/new"
+            path="/customers/new"
             element={<AddPotentialCustomerForm />}
           />
           <Route path="/sales/new" element={<CreateSaleRecordForm />} />
           <Route path="/sales/list" element={<ListSalesPage />} />
           <Route path="/salesperson/new" element={<AddSalesPersonForm />} />
-          <Route path="/saleshistory" element={<ListSalesHistoryPage />} />
+          <Route path="/sales/history" element={<ListSalesHistoryPage />} />
         </Routes>
       </div>
     </BrowserRouter>

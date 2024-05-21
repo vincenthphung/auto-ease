@@ -47,68 +47,65 @@ const MakeCar = () => {
   };
 
   return (
-    <div className="row">
-      <div className="offset-3 col-6">
-        <div className="shadow p-4 mt-4">
-          <h1 className="text-center">Create a New Model</h1>
-          <form id="create-model-form" onSubmit={handleSubmit}>
-            <div className="form-floating mb-3">
-              <input
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Model Name"
-                required
-                type="text"
-                name="name"
-                id="name"
-                className="form-control"
-              />
-              <label htmlFor="name">Model Name</label>
-            </div>
-            <div className="form-floating mb-3">
-              <input
-                onChange={(e) => setPictureUrl(e.target.value)}
-                placeholder="pictureUrl"
-                required
-                type="text"
-                name="pictureUrl"
-                id="pictureUrl"
-                className="form-control"
-              />
-              <label htmlFor="pictureUrl">Picture Url</label>
-            </div>
-            <div className="mb-3">
-              <select
-                onChange={(e) => setSelectedManufacturer(e.target.value)}
-                required
-                name="manufacturer"
-                id="manufacturer"
-                className="form-select"
-              >
-                <option value="">Select a Manufacturer</option>
-                {manufacturers.map((manufacturer) => {
-                  return (
-                    <option key={manufacturer.id} value={manufacturer.id}>
-                      {manufacturer.name}
-                    </option>
-                  );
-                })}
-              </select>
-            </div>
-            <div className="col text-center">
-              <button className="btn btn-primary">Create</button>
-            </div>
-          </form>
-          {submitted && (
-            <div
-              className="alert alert-success mb-0 p-4 mt-4"
-              id="success-message"
-            >
-              Your model has been created!
-            </div>
-          )}
+    <div className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-lg mt-10">
+      <h1 className="text-2xl font-bold mb-6 text-center">Create a New Model</h1>
+      <form id="create-model-form" onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label htmlFor="name" className="block text-sm font-medium text-gray-700">Model Name</label>
+          <input
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Model Name"
+            required
+            type="text"
+            name="name"
+            id="name"
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+          />
         </div>
-      </div>
+        <div>
+          <label htmlFor="pictureUrl" className="block text-sm font-medium text-gray-700">Picture URL</label>
+          <input
+            onChange={(e) => setPictureUrl(e.target.value)}
+            placeholder="Picture URL"
+            required
+            type="text"
+            name="pictureUrl"
+            id="pictureUrl"
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+          />
+        </div>
+        <div>
+          <label htmlFor="manufacturer" className="block text-sm font-medium text-gray-700">Manufacturer</label>
+          <select
+            onChange={(e) => setSelectedManufacturer(e.target.value)}
+            required
+            name="manufacturer"
+            id="manufacturer"
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+          >
+            <option value="">Select a Manufacturer</option>
+            {manufacturers.map((manufacturer) => {
+              return (
+                <option key={manufacturer.id} value={manufacturer.id}>
+                  {manufacturer.name}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+        <div className="text-center">
+          <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            Create
+          </button>
+        </div>
+      </form>
+      {submitted && (
+        <div className="alert alert-success mt-4 p-4 rounded-md text-center">
+          Your model has been created!
+        </div>
+      )}
     </div>
   );
 };
+
 export default MakeCar;

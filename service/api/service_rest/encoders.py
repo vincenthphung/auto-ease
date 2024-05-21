@@ -1,5 +1,5 @@
-from common.json import ModelEncoder
 from .models import Appointment, Technician
+from common.json import ModelEncoder
 
 
 class TechnicianEncoder(ModelEncoder):
